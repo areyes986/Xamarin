@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="MyFirstXamarinApp.MainPage">
 
-    <ListView x:Name="CatListView" RowHeight="1000" HeightRequest="500">
+    <ListView x:Name="CatListView" RowHeight="1000" >
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell >
