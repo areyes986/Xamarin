@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -16,6 +19,23 @@ namespace MyFirstXamarinApp
         public MainPage()
         {
             InitializeComponent();
+            GetCats();
+        }
+
+        private async void GetCats()
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync("https://api.thecatapi.com/v1/images/search");
+            var cats = JsonConvert.DeserializeObject<List<Cats>>(response);
+            CatListView.ItemsSource = cats;
+        }
+
+        async void OnButtonClicked(object sender, EventArgs args)
+        {
+            var viewModel = BindingContext;
+            BindingContext = null;
+            await Navigation.PushAsync(new MainPage());
+            BindingContext = viewModel;
         }
     }
 }
