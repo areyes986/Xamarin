@@ -6,12 +6,25 @@
              mc:Ignorable="d"
              x:Class="MyFirstXamarinApp.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-        <Button Text="Click Me" Clicked="Button_Clicked" />
-    </StackLayout>
-
+    <ListView x:Name="CatListView" RowHeight="1000" >
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell >
+                    <StackLayout Padding ="40">
+                        <Label Text="CATS!" 
+                           HorizontalOptions="Center"/> 
+                        <Frame CornerRadius="20" 
+                           Padding="0"
+                           IsClippedToBounds="True">
+                            <Image Source="{Binding url}" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" 
+                           WidthRequest="500" />
+                        </Frame>
+                        <Button Text="More Cats!" Clicked="OnButtonClicked" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
